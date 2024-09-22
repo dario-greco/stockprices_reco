@@ -8,8 +8,8 @@ The data needed for replicating the results are in the main folder. In particula
 - "DJIA - composition at 2020.xlsx" includes the information used for metadata clustering, that is, the industry sector and the Exchange where the stocks are traded;
 - "DataP0_2015.xlsx" includes the bottom stock prices considered for robustness to Dow Jones Index in the period 2015-2017;
 - "DowJones2015.xlsx" includes information used for metadata clustering of the 2015-2017 dataset;
-- "sp500_companies.xlsx" includes the bottom stock prices considered for the robustness with S&P500 data;
-- "sp500_stocks.csv" includes information used for metadata clustering of the S&P500 data.
+- "sp500wide.RData" includes the bottom stock prices considered for the robustness with S&P500 data;
+- "sp500_companies.xlsx" includes information used for metadata clustering of the S&P500 data.
 
 The main results are obtained from the following R codes, included in the folder "R_scripts" (R version: 4.4.1):
 
