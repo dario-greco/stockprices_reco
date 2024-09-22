@@ -1,4 +1,4 @@
-Here you can find the files to replicate the results of the paper "Improving out-of-sample forecasts of stock price indexes with forecast reconciliation and clustering".
+# Here you can find the files to replicate the results of the paper "Improving out-of-sample forecasts of stock price indexes with forecast reconciliation and clustering".
 
 The data needed for replicating the results are in the main folder. In particular:
 
