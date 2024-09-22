@@ -1,0 +1,1 @@
+This folder called "Figures" is empty, but it is needed to save figures obtained with the R codes.
