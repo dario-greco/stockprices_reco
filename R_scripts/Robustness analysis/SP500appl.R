@@ -20,14 +20,10 @@ library(ggcorrplot)
 library(here)
 library(reshape2)
 
-setwd(here())
-
 # Load data:
 
-DataP0 <- rio::import("sp500_stocks.csv")# Import SP500
 SP.dat <- rio::import("sp500_companies.csv")# Tickers, exchange, industry
-DataP0_wide <- dcast(DataP0, Date ~ Symbol, value.var = "Adj Close")
-DataP0_wide <- DataP0_wide[3022:3584,c(1,which(colnames(DataP0_wide) %in% SP.dat$Symbol))]
+DataP0_wide <- rio::import("sp500wide.RData") # Prices SP500
 Basey <- DataP0_wide[,-c(which(apply(DataP0_wide, 2, function(x){sum(is.na(x))})!=0))]
 Basey <- Basey[,-1]
 SP.dat <- SP.dat[SP.dat$Symbol %in% colnames(Basey), ]
