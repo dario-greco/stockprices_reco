@@ -30,4 +30,4 @@ dplyr_1.1.4, sandwich_3.1-0, lmtest_0.9-40, doParallel_1.0.17, ggplot2_3.5.1, he
 
 The folder called "Figures" is empty, but it is needed to save figures obtained with the R codes.
 
-To reproduce the results correctly, we suggest to unzip the file and running the R codes directly from the resulting folder. For any enquiry, please write to Raffaele Mattera (email: raffaele.mattera@uniroma1.it)
+To reproduce the results correctly, we suggest to unzip the file and running the R codes directly from the resulting folder. For any enquiry, please write to raffaele.mattera@uniroma1.it
