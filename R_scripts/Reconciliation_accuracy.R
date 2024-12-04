@@ -122,7 +122,7 @@ for (l in 1:4) {
 
   indexNOCLUST.err <- vector("numeric", length(ALL.f))
   for (i in 1:length(index.err)) {
-    indexNOCLUST.err[i] <- Ytot.I[(train.l + i + h[l] - 1), 1] - sum(NOCLUST.rec[[i]][h[l], ])
+    indexNOCLUST.err[i] <- Ytot.I[(train.l + i + h[l] - 1), 1] - sum(NOCLUST.rec[[i]][1, ]) # 1 for the clustered approaches (except ALL) means the h[l] step ahead forecast. Ex: instead of all forecasts for 1,2,3 we just take 3
   }
 
   mseNOCLUST.index <- mean(indexNOCLUST.err^2)
@@ -133,7 +133,7 @@ for (l in 1:4) {
 
   indexIND.err <- vector("numeric", length(IND.f))
   for (i in 1:length(index.err)) {
-    indexIND.err[i] <- Ytot.all[(train.l + i + h[l] - 1), 1] - sum(IND.rec[[i]][h[l], ])
+    indexIND.err[i] <- Ytot.all[(train.l + i + h[l] - 1), 1] - sum(IND.rec[[i]][1, ])
   }
 
   mseIND.index <- mean(indexIND.err^2)
@@ -144,7 +144,7 @@ for (l in 1:4) {
 
   indexMRKT.err <- vector("numeric", length(MRKT.f))
   for (i in 1:length(index.err)) {
-    indexMRKT.err[i] <- Ytot.all[(train.l + i + h[l] - 1), 1] - sum(MRKT.rec[[i]][h[l], ])
+    indexMRKT.err[i] <- Ytot.all[(train.l + i + h[l] - 1), 1] - sum(MRKT.rec[[i]][1, ])
   }
 
   mseMRKT.index <- mean(indexMRKT.err^2)
@@ -155,7 +155,7 @@ for (l in 1:4) {
 
   indexEUCL.err <- vector("numeric", length(EUCL.f))
   for (i in 1:length(index.err)) {
-    indexEUCL.err[i] <- Ytot.all[(train.l + i + h[l] - 1), 1] - sum(EUCL.rec[[i]][h[l], ])
+    indexEUCL.err[i] <- Ytot.all[(train.l + i + h[l] - 1), 1] - sum(EUCL.rec[[i]][1, ])
   }
 
   mseEUCL.index <- mean(indexEUCL.err^2)
@@ -166,7 +166,7 @@ for (l in 1:4) {
 
   indexCOR.err <- vector("numeric", length(COR.f))
   for (i in 1:length(index.err)) {
-    indexCOR.err[i] <- Ytot.all[(train.l + i + h[l] - 1), 1] - sum(COR.rec[[i]][h[l], ])
+    indexCOR.err[i] <- Ytot.all[(train.l + i + h[l] - 1), 1] - sum(COR.rec[[i]][1, ])
   }
 
   mseCOR.index <- mean(indexCOR.err^2)
@@ -177,7 +177,7 @@ for (l in 1:4) {
 
   indexARMA.err <- vector("numeric", length(ARMA.f))
   for (i in 1:length(index.err)) {
-    indexARMA.err[i] <- Ytot.all[(train.l + i + h[l] - 1), 1] - sum(ARMA.rec[[i]][h[l], ])
+    indexARMA.err[i] <- Ytot.all[(train.l + i + h[l] - 1), 1] - sum(ARMA.rec[[i]][1, ])
   }
 
   mseARMA.index <- mean(indexARMA.err^2)
@@ -332,7 +332,7 @@ for (l in 1:4) {
   recNOCLUST.err <- matrix(NA, nrow = length(ALL.f), ncol = 30)
   recNOCLUST.perr <- matrix(NA, nrow = length(ALL.f), ncol = 30)
   for (i in 1:nrow(fbase.err)) {
-    recNOCLUST.err[i, ] <- Ytot.I[(train.l + i + h[l] - 1), 2:ncol(Ytot.I)] - NOCLUST.rec[[i]][h[l], ] # ALL.rec[[i]] if h=1, ALL.rec[[i]][,h[l]] for h>1.
+    recNOCLUST.err[i, ] <- Ytot.I[(train.l + i + h[l] - 1), 2:ncol(Ytot.I)] - NOCLUST.rec[[i]][h[l], ]
   }
   for (i in 1:nrow(fbase.err)) {
     recNOCLUST.perr[i, ] <- 100 * (Ytot.I[(train.l + i + h[l] - 1), 2:ncol(Ytot.I)] - NOCLUST.rec[[i]][h[l], ]) / Ytot.I[(train.l + i + h[l] - 1), 2:ncol(Ytot.I)]
@@ -351,10 +351,10 @@ for (l in 1:4) {
   recIND.err <- matrix(NA, nrow = length(IND.f), ncol = 30)
   recIND.perr <- matrix(NA, nrow = length(IND.f), ncol = 30)
   for (i in 1:nrow(fbase.err)) {
-    recIND.err[i, ] <- Ytot.IND[(train.l + i + h[l] - 1), (nclust.IND + 2):ncol(Ytot.IND)] - IND.rec[[i]][h[l], ]
+    recIND.err[i, ] <- Ytot.IND[(train.l + i + h[l] - 1), (nclust.IND + 2):ncol(Ytot.IND)] - IND.rec[[i]][1, ]
   }
   for (i in 1:nrow(fbase.err)) {
-    recIND.perr[i, ] <- 100 * (Ytot.IND[(train.l + i + h[l] - 1), (nclust.IND + 2):ncol(Ytot.IND)] - IND.rec[[i]][h[l], ]) / Ytot.IND[(train.l + i + h[l] - 1), (nclust.IND + 2):ncol(Ytot.IND)]
+    recIND.perr[i, ] <- 100 * (Ytot.IND[(train.l + i + h[l] - 1), (nclust.IND + 2):ncol(Ytot.IND)] - IND.rec[[i]][1, ]) / Ytot.IND[(train.l + i + h[l] - 1), (nclust.IND + 2):ncol(Ytot.IND)]
   }
   mspeIND.base <- apply(recIND.err, 2, function(x) {
     sqrt(mean(x^2))
@@ -370,10 +370,10 @@ for (l in 1:4) {
   recMRKT.err <- matrix(NA, nrow = length(MRKT.f), ncol = 30)
   recMRKT.perr <- matrix(NA, nrow = length(MRKT.f), ncol = 30)
   for (i in 1:nrow(fbase.err)) {
-    recMRKT.err[i, ] <- Ytot.MRKT[(train.l + i + h[l] - 1), (nclust.MRKT + 2):ncol(Ytot.MRKT)] - MRKT.rec[[i]][h[l], ]
+    recMRKT.err[i, ] <- Ytot.MRKT[(train.l + i + h[l] - 1), (nclust.MRKT + 2):ncol(Ytot.MRKT)] - MRKT.rec[[i]][1, ]
   }
   for (i in 1:nrow(fbase.err)) {
-    recMRKT.perr[i, ] <- 100 * (Ytot.MRKT[(train.l + i + h[l] - 1), (nclust.MRKT + 2):ncol(Ytot.MRKT)] - MRKT.rec[[i]][h[l], ]) / Ytot.MRKT[(train.l + i + h[l] - 1), (nclust.MRKT + 2):ncol(Ytot.MRKT)]
+    recMRKT.perr[i, ] <- 100 * (Ytot.MRKT[(train.l + i + h[l] - 1), (nclust.MRKT + 2):ncol(Ytot.MRKT)] - MRKT.rec[[i]][1, ]) / Ytot.MRKT[(train.l + i + h[l] - 1), (nclust.MRKT + 2):ncol(Ytot.MRKT)]
   }
   mspeMRKT.base <- apply(recMRKT.err, 2, function(x) {
     sqrt(mean(x^2))
@@ -389,10 +389,10 @@ for (l in 1:4) {
   recEUCL.err <- matrix(NA, nrow = length(EUCL.f), ncol = 30)
   recEUCL.perr <- matrix(NA, nrow = length(EUCL.f), ncol = 30)
   for (i in 1:nrow(fbase.err)) {
-    recEUCL.err[i, ] <- Ytot.EUCL[(train.l + i + h[l] - 1), (nclust.EUCL + 2):ncol(Ytot.EUCL)] - EUCL.rec[[i]][h[l], ]
+    recEUCL.err[i, ] <- Ytot.EUCL[(train.l + i + h[l] - 1), (nclust.EUCL + 2):ncol(Ytot.EUCL)] - EUCL.rec[[i]][1, ]
   }
   for (i in 1:nrow(fbase.err)) {
-    recEUCL.perr[i, ] <- 100 * (Ytot.EUCL[(train.l + i + h[l] - 1), (nclust.EUCL + 2):ncol(Ytot.EUCL)] - EUCL.rec[[i]][h[l], ]) / Ytot.EUCL[(train.l + i + h[l] - 1), (nclust.EUCL + 2):ncol(Ytot.EUCL)]
+    recEUCL.perr[i, ] <- 100 * (Ytot.EUCL[(train.l + i + h[l] - 1), (nclust.EUCL + 2):ncol(Ytot.EUCL)] - EUCL.rec[[i]][1, ]) / Ytot.EUCL[(train.l + i + h[l] - 1), (nclust.EUCL + 2):ncol(Ytot.EUCL)]
   }
   mspeEUCL.base <- apply(recEUCL.err, 2, function(x) {
     sqrt(mean(x^2))
@@ -408,10 +408,10 @@ for (l in 1:4) {
   recCOR.err <- matrix(NA, nrow = length(COR.f), ncol = 30)
   recCOR.perr <- matrix(NA, nrow = length(COR.f), ncol = 30)
   for (i in 1:nrow(fbase.err)) {
-    recCOR.err[i, ] <- Ytot.COR[(train.l + i + h[l] - 1), (nclust.COR + 2):ncol(Ytot.COR)] - COR.rec[[i]][h[l], ]
+    recCOR.err[i, ] <- Ytot.COR[(train.l + i + h[l] - 1), (nclust.COR + 2):ncol(Ytot.COR)] - COR.rec[[i]][1, ]
   }
   for (i in 1:nrow(fbase.err)) {
-    recCOR.perr[i, ] <- 100 * (Ytot.COR[(train.l + i + h[l] - 1), (nclust.COR + 2):ncol(Ytot.COR)] - COR.rec[[i]][h[l], ]) / Ytot.COR[(train.l + i + h[l] - 1), (nclust.COR + 2):ncol(Ytot.COR)]
+    recCOR.perr[i, ] <- 100 * (Ytot.COR[(train.l + i + h[l] - 1), (nclust.COR + 2):ncol(Ytot.COR)] - COR.rec[[i]][1, ]) / Ytot.COR[(train.l + i + h[l] - 1), (nclust.COR + 2):ncol(Ytot.COR)]
   }
   mspeCOR.base <- apply(recCOR.err, 2, function(x) {
     sqrt(mean(x^2))
@@ -432,10 +432,10 @@ for (l in 1:4) {
   recARMA.err <- matrix(NA, nrow = length(ARMA.f), ncol = 30)
   recARMA.perr <- matrix(NA, nrow = length(ARMA.f), ncol = 30)
   for (i in 1:nrow(fbase.err)) {
-    recARMA.err[i, ] <- Ytot.ARMA[(train.l + i + h[l] - 1), orderARMA] - ARMA.rec[[i]][h[l], ]
+    recARMA.err[i, ] <- Ytot.ARMA[(train.l + i + h[l] - 1), orderARMA] - ARMA.rec[[i]][1, ]
   }
   for (i in 1:nrow(fbase.err)) {
-    recARMA.perr[i, ] <- 100 * (Ytot.ARMA[(train.l + i + h[l] - 1), orderARMA] - ARMA.rec[[i]][h[l], ]) / Ytot.ARMA[(train.l + i + h[l] - 1), orderARMA]
+    recARMA.perr[i, ] <- 100 * (Ytot.ARMA[(train.l + i + h[l] - 1), orderARMA] - ARMA.rec[[i]][1, ]) / Ytot.ARMA[(train.l + i + h[l] - 1), orderARMA]
   }
   mspeARMA.base <- apply(recARMA.err, 2, function(x) {
     sqrt(mean(x^2))
