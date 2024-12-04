@@ -61,7 +61,7 @@ for (l in 1:length(h)) {
     export(for.h, paste0(folder,"for.h", h[l], names(Hlists)[m], ".RDS"))
 
     for.rec <- foreach(i = 1:length(for.h), .packages = c("forecast", "hts")) %dopar% {
-      rfor <- MinT(fcasts = for.h[[i]][[1]], nodes = get_nodes(Hy), residual = for.h[[i]][[2]], covariance = "shr", keep = "bottom", algorithms="chol")
+      rfor <- MinT(fcasts = for.h[[i]][[1]][h[l],], nodes = get_nodes(Hy), residual = for.h[[i]][[2]], covariance = "shr", keep = "bottom", algorithms="chol")
 
       return(rfor)
     }
