@@ -125,7 +125,7 @@ for (l in 1:length(h)) {
 h <- c(1, 3, 6, 12)
 
 for (l in 1:4) {
-  Base.f <- import(paste0("for.h", h[l], "NOCLUST.RDS"))
+  Base.f <- import(paste0(folder,"for.h", h[l], "NOCLUST.RDS"))
 
   Sm <- smatrix(Hy.I)
   G <- cbind(rep(0, ncol(Sm)), diag(1, nrow = ncol(Sm), ncol = ncol(Sm)))
