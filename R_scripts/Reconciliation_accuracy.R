@@ -332,10 +332,10 @@ for (l in 1:4) {
   recNOCLUST.err <- matrix(NA, nrow = length(ALL.f), ncol = 30)
   recNOCLUST.perr <- matrix(NA, nrow = length(ALL.f), ncol = 30)
   for (i in 1:nrow(fbase.err)) {
-    recNOCLUST.err[i, ] <- Ytot.I[(train.l + i + h[l] - 1), 2:ncol(Ytot.I)] - NOCLUST.rec[[i]][h[l], ]
+    recNOCLUST.err[i, ] <- Ytot.I[(train.l + i + h[l] - 1), 2:ncol(Ytot.I)] - NOCLUST.rec[[i]][1, ]
   }
   for (i in 1:nrow(fbase.err)) {
-    recNOCLUST.perr[i, ] <- 100 * (Ytot.I[(train.l + i + h[l] - 1), 2:ncol(Ytot.I)] - NOCLUST.rec[[i]][h[l], ]) / Ytot.I[(train.l + i + h[l] - 1), 2:ncol(Ytot.I)]
+    recNOCLUST.perr[i, ] <- 100 * (Ytot.I[(train.l + i + h[l] - 1), 2:ncol(Ytot.I)] - NOCLUST.rec[[i]][1, ]) / Ytot.I[(train.l + i + h[l] - 1), 2:ncol(Ytot.I)]
   }
   mspeNOCLUST.base <- apply(recNOCLUST.err, 2, function(x) {
     sqrt(mean(x^2))
