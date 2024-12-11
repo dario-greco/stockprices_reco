@@ -99,27 +99,27 @@ for (l in 1:4){
   
   yhat.IND <- NULL
   for (i in 1:length(IND.f)) {
-    yhat.IND[i] <- sum(IND.rec[[i]][h[l],])
+    yhat.IND[i] <- sum(IND.rec[[i]][1,])
   }
   
   yhat.MRKT <- NULL
   for (i in 1:length(IND.f)) {
-    yhat.MRKT[i] <- sum(MRKT.rec[[i]][h[l],])
+    yhat.MRKT[i] <- sum(MRKT.rec[[i]][1,])
   }
   
   yhat.EUCL <- NULL
   for (i in 1:length(IND.f)) {
-    yhat.EUCL[i] <- sum(EUCL.rec[[i]][h[l],])
+    yhat.EUCL[i] <- sum(EUCL.rec[[i]][1,])
   }
   
   yhat.COR <- NULL
   for (i in 1:length(IND.f)) {
-    yhat.COR[i] <- sum(COR.rec[[i]][h[l],])
+    yhat.COR[i] <- sum(COR.rec[[i]][1,])
   }
   
   yhat.ARMA <- NULL
   for (i in 1:length(IND.f)) {
-    yhat.ARMA[i] <- sum(ARMA.rec[[i]][h[l],])
+    yhat.ARMA[i] <- sum(ARMA.rec[[i]][1,])
   }
   
   yhat.ALL <- NULL
@@ -134,7 +134,7 @@ for (l in 1:4){
   
   yhat.NOCLUST <- NULL
   for (i in 1:length(IND.f)) {
-    yhat.NOCLUST[i] <- sum(NOCLUST.rec[[i]][h[l],])
+    yhat.NOCLUST[i] <- sum(NOCLUST.rec[[i]][1,])
   }
   
   yhat.Base <- NULL
@@ -143,7 +143,7 @@ for (l in 1:4){
   }
   
   
-  # Proportion test: ARMA vs reconciliation h=1
+  # Proportion test
   
   InvMat1 <- matrix(NA,6,3)
   InvMat2 <- matrix(NA,6,3)
